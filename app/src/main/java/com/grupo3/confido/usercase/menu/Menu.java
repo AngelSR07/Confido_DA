@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -26,7 +27,16 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.grupo3.confido.R;
+import com.grupo3.confido.model.LoginActivity;
+import com.grupo3.confido.model.User;
 import com.grupo3.confido.usercase.acount.FragmentConfig;
 import com.grupo3.confido.usercase.home.FragmentHome;
 import com.grupo3.confido.usercase.list_contact.FragmentListContact;
@@ -34,6 +44,7 @@ import com.grupo3.confido.usercase.recomendations.FragmentRecomendations;
 import com.grupo3.confido.util.backgroundService.Service_Message;
 
 
+@SuppressWarnings("FieldCanBeLocal")
 public class Menu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     //Variables para diseñar la barra menu
@@ -63,13 +74,37 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
     private final static int NOTIFICATION_ID = 0;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
 
+        /*======== Firebase Authentication ========*/
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser == null) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
+        /*======== Firebase User's stances ========*/
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference("users")
+                .child(currentUser.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
 
         /*
@@ -167,6 +202,7 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
 
 
     //Programamos el evento onClick de los elementos de la barra de menú
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -215,6 +251,15 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
                 closeNotification();
 
                 break;
+
+            case R.id.nav_sign_off:
+
+                FirebaseAuth.getInstance().signOut();
+                Intent logoutIntent = new Intent(this, LoginActivity.class);
+                startActivity(logoutIntent);
+                finish();
+
+                break;
         }
 
         fragmentTransaction.commit();
@@ -236,6 +281,7 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
 
 
     //Preparamos el canal por el cual la notificación va a ser transmitido
+    @SuppressLint("ObsoleteSdkInt")
     private void createNotificationChannel(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){//O = Hace referencia a la version "OREO" API 26
             CharSequence name = "Notificacion";

@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.grupo3.confido">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,20 +16,28 @@
         android:theme="@style/Theme.Confido"
         tools:targetApi="31">
         <activity
+            android:name=".model.RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Confido.NoActionBar"/>
+        <activity
+            android:name=".model.WelcomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Confido.NoActionBar"/>
+        <activity
+            android:name=".model.LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Confido.NoActionBar"/>
+        <activity
             android:name=".usercase.menu.Menu"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Confido.NoActionBar"
-            android:configChanges="orientation|keyboardHidden|screenSize">
+            android:theme="@style/Theme.Confido.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Indicamos que la clase "Service_Message" es un servicio -->
-        <service android:name=".util.backgroundService.Service_Message"/>
+        </activity> <!-- Indicamos que la clase "Service_Message" es un servicio -->
+        <service android:name=".util.backgroundService.Service_Message" />
     </application>
 
 </manifest>
