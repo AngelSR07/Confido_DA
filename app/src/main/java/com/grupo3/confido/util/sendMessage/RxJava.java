@@ -1,10 +1,8 @@
 package com.grupo3.confido.util.sendMessage;
 
 import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
