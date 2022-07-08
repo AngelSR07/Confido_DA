@@ -15,6 +15,7 @@ import com.grupo3.confido.R;
 import com.grupo3.confido.usercase.recomendations.guide.FragmentGuide;
 import com.grupo3.confido.usercase.recomendations.info.FragmentInfo;
 import com.grupo3.confido.usercase.recomendations.info.dialog_welcome_info.FragmentInfoWelcome;
+import com.grupo3.confido.usercase.recomendations.search_help.FragmentSearchHelp;
 
 public class FragmentRecomendations extends Fragment implements FragmentChange {
 
@@ -36,7 +37,8 @@ public class FragmentRecomendations extends Fragment implements FragmentChange {
         Button btnQuestion = root.findViewById(R.id.btnGuide);
         btnQuestion.setOnClickListener(view -> goToNewFragment2());
 
-
+        Button btnhelp = root.findViewById(R.id.btnHelp);
+        btnhelp.setOnClickListener(view -> goToNewFragmentHelp());
 
         return root;
     }
@@ -65,7 +67,18 @@ public class FragmentRecomendations extends Fragment implements FragmentChange {
 
     }
 
+    public void goToNewFragmentHelp() {
+        //requireActivity() --> Metodo que nos permite hacer referencia a la actividad actual y se asegura que dicha referencia no sea nulo.
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.addToBackStack(null);
 
+        //                  replace(ID del fragmento a reemplazar (Actual), Nombre de la clase del fragmento a mostrar, null)
+
+        fragmentTransaction.replace(R.id.fragment_recomend, FragmentSearchHelp.class, null);
+
+        fragmentTransaction.commit();
+    }
 
 
 

@@ -41,6 +41,9 @@
         <entry key="..\:/Users/ANGEL/AndroidStudioProjects/Confido/app/src/main/res/menu/drawer_menu.xml" value="0.3625" />
         <entry key="..\:/Users/ANGEL/AndroidStudioProjects/Confido/app/src/main/res/mipmap-anydpi-v26/ic_launcher_logo_app.xml" value="0.1255" />
         <entry key="..\:/Users/ANGEL/AndroidStudioProjects/Confido/app/src/main/res/mipmap-anydpi-v26/ic_launcher_logo_app_round.xml" value="0.1255" />
+        <entry key="..\:/git2/Confido_DA/app/src/main/res/layout/fragment_recomendations_search_help.xml" value="0.1" />
+        <entry key="..\:/git2/Confido_DA/app/src/main/res/layout/fragment_recomendations_search_help_dialog_box.xml" value="0.1" />
+        <entry key="..\:/git2/Confido_DA/app/src/main/res/layout/fragment_recomendations_search_help_list.xml" value="0.1" />
       </map>
     </option>
   </component>
