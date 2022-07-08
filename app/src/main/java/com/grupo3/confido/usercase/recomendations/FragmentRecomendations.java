@@ -12,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.grupo3.confido.R;
+import com.grupo3.confido.usercase.recomendations.guide.FragmentGuide;
 import com.grupo3.confido.usercase.recomendations.info.FragmentInfo;
+import com.grupo3.confido.usercase.recomendations.info.dialog_welcome_info.FragmentInfoWelcome;
 
 public class FragmentRecomendations extends Fragment implements FragmentChange {
 
@@ -31,6 +33,11 @@ public class FragmentRecomendations extends Fragment implements FragmentChange {
         Button btninfo = root.findViewById(R.id.btnInformation);
         btninfo.setOnClickListener(view -> goToNewFragment());
 
+        Button btnQuestion = root.findViewById(R.id.btnGuide);
+        btnQuestion.setOnClickListener(view -> goToNewFragment2());
+
+
+
         return root;
     }
 
@@ -47,7 +54,18 @@ public class FragmentRecomendations extends Fragment implements FragmentChange {
         fragmentTransaction.replace(R.id.fragment_recomend, FragmentInfo.class, null);
 
         fragmentTransaction.commit();
+
     }
+
+    public void goToNewFragment2() {
+
+        FragmentGuide fragmentGuide = new FragmentGuide();
+
+        fragmentGuide.viewDialogWelcome(getContext(), getLayoutInflater());
+
+    }
+
+
 
 
 
