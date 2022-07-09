@@ -31,6 +31,7 @@ import com.grupo3.confido.usercase.acount.FragmentConfig;
 import com.grupo3.confido.usercase.home.FragmentHome;
 import com.grupo3.confido.usercase.list_contact.FragmentListContact;
 import com.grupo3.confido.usercase.recomendations.FragmentRecomendations;
+import com.grupo3.confido.usercase.service.Fragment_Service;
 import com.grupo3.confido.util.backgroundService.Service_Message;
 
 
@@ -201,20 +202,12 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
                     selectedItem(item);
                 break;
 
-            case R.id.nav_service_start:
-
-                startService(new Intent(getApplicationContext(), Service_Message.class));
-                createNotificationChannel();
-                createNotification();
-
+            case R.id.nav_service:
+                fragmentTransaction.replace(R.id.nav_fragment_content_main, new Fragment_Service())
+                        .addToBackStack(null);
+                selectedItem(item);
                 break;
 
-            case R.id.nav_service_end:
-
-                stopService(new Intent(getApplicationContext(), Service_Message.class));
-                closeNotification();
-
-                break;
         }
 
         fragmentTransaction.commit();
@@ -231,48 +224,6 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         }
         selectedFeature = item;
         selectedFeature.setChecked(true);
-    }
-
-
-
-    //Preparamos el canal por el cual la notificación va a ser transmitido
-    private void createNotificationChannel(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){//O = Hace referencia a la version "OREO" API 26
-            CharSequence name = "Notificacion";
-
-            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID,name,
-                    NotificationManager.IMPORTANCE_DEFAULT);
-
-            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
-            notificationManager.createNotificationChannel(notificationChannel);
-        }
-    }
-
-
-    //Creamos una notificación para que el usuario sepa que la aplicación se está ejecutando en 2do plano
-    private void createNotification(){
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID);
-
-        builder.setSmallIcon(R.drawable.ic_launcher_foreground);
-        builder.setContentTitle("Servicio de mensaje de ayuda");
-        builder.setContentText("El servicio de mensajeria \"Confido\" se encuentra activo.");
-        builder.setColor(Color.BLUE);
-        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        builder.setLights(Color.MAGENTA,1000,1000);
-        builder.setVibrate(new long[]{1000,1000,1000,1000,1000});
-        builder.setDefaults(Notification.DEFAULT_SOUND);
-
-        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
-        notificationManagerCompat.notify(NOTIFICATION_ID,builder.build());
-    }
-
-
-
-    //Metodo que permite cerrar la notificación
-    private void closeNotification(){
-        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
-        notificationManagerCompat.cancel(NOTIFICATION_ID);
     }
 
 }

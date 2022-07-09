@@ -50,14 +50,9 @@
         tools:ignore="HardcodedText,TextContrastCheck">
         <menu>
             <item
-                android:id="@+id/nav_service_start"
-                android:title="Iniciar servicio"
-                tools:ignore="HardcodedText,TextContrastCheck"
-                />
-
-            <item
-                android:id="@+id/nav_service_end"
-                android:title="Detener servicio"
+                android:id="@+id/nav_service"
+                android:title="Iniciar / Detener servicio"
+                android:checkable="true"
                 tools:ignore="HardcodedText,TextContrastCheck"
                 />
         </menu>
