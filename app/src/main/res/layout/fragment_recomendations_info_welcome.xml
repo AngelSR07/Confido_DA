@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    android:paddingHorizontal="10dp"
-    android:paddingVertical="20dp"
-
+    android:background="@drawable/background_box_view"
     android:orientation="vertical"
 
-    android:background="@drawable/background_box_view">
+    android:paddingHorizontal="10dp"
+
+    android:paddingVertical="20dp">
 
     <ImageButton
         android:id="@+id/imgCloseBoxWelcome"
@@ -18,56 +18,70 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:background="@color/white"
-
         android:layout_gravity="end"
 
-        android:src="@drawable/background_box_view_ic_close"
+        android:background="@color/white"
+
         android:contentDescription="close.png"
+        android:src="@drawable/background_box_view_ic_close"
 
-        tools:ignore="HardcodedText,TextContrastCheck"/>
+        tools:ignore="HardcodedText,TextContrastCheck" />
 
-
-    <TextView
-        android:id="@+id/txtDescWelcome"
-
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="50dp"
+        android:layout_marginVertical="5dp">
 
-        android:layout_gravity="center_horizontal"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-        android:text="A continuación, te presentamos los 9 conceptos que han sido trabajado por el diario el Comercio en conjunto con el apoyo de la Defensoría del Pueblo"
-        android:textColor="#7A7A7A"
-        android:textStyle="bold"
-        android:textSize="18sp"
-
-        android:justificationMode="inter_word"
-
-        tools:ignore="HardcodedText,TextContrastCheck"/>
+            android:orientation="vertical">
 
 
+            <TextView
+                android:id="@+id/txtDescWelcome"
 
-    <Button
-        android:id="@+id/btnCloseBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="10dp"
 
-        app:cornerRadius="10dp"
-        android:backgroundTint="#7972E6"
+                android:layout_marginVertical="50dp"
 
-        android:padding="15dp"
-        android:layout_gravity="center_horizontal"
+                android:justificationMode="inter_word"
+                android:text="A continuación, te presentamos los 9 conceptos que han sido trabajado por el diario el Comercio en conjunto con el apoyo de la Defensoría del Pueblo"
+                android:textColor="#7A7A7A"
+                android:textSize="18sp"
 
-        android:text="Ok"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:textSize="20sp"
+                android:textStyle="bold"
 
-        tools:ignore="HardcodedText,TextContrastCheck"/>
+                tools:ignore="HardcodedText,TextContrastCheck" />
+
+
+            <Button
+                android:id="@+id/btnCloseBox"
+
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="#7972E6"
+
+                android:padding="15dp"
+                android:text="Ok"
+
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                app:cornerRadius="10dp"
+
+                tools:ignore="HardcodedText,TextContrastCheck" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>

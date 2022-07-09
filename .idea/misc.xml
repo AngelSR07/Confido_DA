@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/OneDrive - Universidad Tecnologica del Peru/UTP/2022- I Marzo/DESARROLLO DE APLICACIONES MOVILES (11096)/confidoi/app/src/main/res/layout/activity_main.xml" value="0.33055555555555555" />
+        <entry key="..\:/OneDrive - Universidad Tecnologica del Peru/UTP/2022- I Marzo/DESARROLLO DE APLICACIONES MOVILES (11096)/confidoi/app/src/main/res/layout/fragment_recomendations_guide.xml" value="0.18703703703703703" />
+        <entry key="..\:/OneDrive - Universidad Tecnologica del Peru/UTP/2022- I Marzo/DESARROLLO DE APLICACIONES MOVILES (11096)/confidoi/app/src/main/res/layout/fragment_recomendations_info.xml" value="0.33055555555555555" />
+        <entry key="..\:/OneDrive - Universidad Tecnologica del Peru/UTP/2022- I Marzo/DESARROLLO DE APLICACIONES MOVILES (11096)/confidoi/app/src/main/res/layout/fragment_recomendations_info_dialog_box.xml" value="0.1" />
+        <entry key="..\:/OneDrive - Universidad Tecnologica del Peru/UTP/2022- I Marzo/DESARROLLO DE APLICACIONES MOVILES (11096)/confidoi/app/src/main/res/layout/fragment_recomendations_info_welcome.xml" value="0.30959752321981426" />
         <entry key="..\:/Users/ANGEL/AndroidStudioProjects/Confido/app/src/main/res/drawable/background_back_arrow.xml" value="0.2715" />
         <entry key="..\:/Users/ANGEL/AndroidStudioProjects/Confido/app/src/main/res/drawable/background_box_view.xml" value="0.2715" />
         <entry key="..\:/Users/ANGEL/AndroidStudioProjects/Confido/app/src/main/res/drawable/background_box_view_ic_close.xml" value="0.2715" />
@@ -36,6 +41,9 @@
         <entry key="..\:/Users/ANGEL/AndroidStudioProjects/Confido/app/src/main/res/menu/drawer_menu.xml" value="0.3625" />
         <entry key="..\:/Users/ANGEL/AndroidStudioProjects/Confido/app/src/main/res/mipmap-anydpi-v26/ic_launcher_logo_app.xml" value="0.1255" />
         <entry key="..\:/Users/ANGEL/AndroidStudioProjects/Confido/app/src/main/res/mipmap-anydpi-v26/ic_launcher_logo_app_round.xml" value="0.1255" />
+        <entry key="..\:/git2/Confido_DA/app/src/main/res/layout/fragment_recomendations_search_help.xml" value="0.1" />
+        <entry key="..\:/git2/Confido_DA/app/src/main/res/layout/fragment_recomendations_search_help_dialog_box.xml" value="0.1" />
+        <entry key="..\:/git2/Confido_DA/app/src/main/res/layout/fragment_recomendations_search_help_list.xml" value="0.1" />
       </map>
     </option>
   </component>

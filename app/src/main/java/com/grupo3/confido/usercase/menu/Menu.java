@@ -18,6 +18,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -50,12 +51,9 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
     boolean didFragmentBStartATask;
 
 
-
     //Variables para el diseño del Item seleccionado
     private MenuItem selectedFeature;
     private MenuItem selectedProject;
-
-
 
 
     //Variable servicio
@@ -63,12 +61,14 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
     private final static int NOTIFICATION_ID = 0;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        /*======== Lock Horizontal mode ========*/
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
 
@@ -153,7 +153,6 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
 
-
     /*
      * Permite cargar los fragmentos en el contenedor principal que está en la actividad "nav_content_main"
      * Además, hace que el layout del menú sea interactivo
@@ -163,7 +162,6 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
 
 
     //Programamos el evento onClick de los elementos de la barra de menú
@@ -176,29 +174,29 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
 
         fragmentTransaction = fragmentManager.beginTransaction();
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_home:
-                    fragmentTransaction.replace(R.id.nav_fragment_content_main, new FragmentHome())
-                            .addToBackStack(null);
-                    selectedItem(item);
+                fragmentTransaction.replace(R.id.nav_fragment_content_main, new FragmentHome())
+                        .addToBackStack(null);
+                selectedItem(item);
                 break;
 
             case R.id.nav_contact_list:
-                    fragmentTransaction.replace(R.id.nav_fragment_content_main, new FragmentListContact())
-                            .addToBackStack(null);
-                    selectedItem(item);
+                fragmentTransaction.replace(R.id.nav_fragment_content_main, new FragmentListContact())
+                        .addToBackStack(null);
+                selectedItem(item);
                 break;
 
             case R.id.nav_configuration:
-                    fragmentTransaction.replace(R.id.nav_fragment_content_main, new FragmentConfig())
-                            .addToBackStack(null);
-                    selectedItem(item);
+                fragmentTransaction.replace(R.id.nav_fragment_content_main, new FragmentConfig())
+                        .addToBackStack(null);
+                selectedItem(item);
                 break;
 
             case R.id.nav_recomendations:
-                    fragmentTransaction.replace(R.id.nav_fragment_content_main, new FragmentRecomendations())
-                            .addToBackStack(null);
-                    selectedItem(item);
+                fragmentTransaction.replace(R.id.nav_fragment_content_main, new FragmentRecomendations())
+                        .addToBackStack(null);
+                selectedItem(item);
                 break;
 
             case R.id.nav_service_start:
@@ -224,9 +222,8 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
 
-
-    private void selectedItem(@NonNull MenuItem item){
-        if(selectedFeature != null){
+    private void selectedItem(@NonNull MenuItem item) {
+        if (selectedFeature != null) {
             selectedFeature.setChecked(false);
         }
         selectedFeature = item;
@@ -234,13 +231,12 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
 
-
     //Preparamos el canal por el cual la notificación va a ser transmitido
-    private void createNotificationChannel(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){//O = Hace referencia a la version "OREO" API 26
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {//O = Hace referencia a la version "OREO" API 26
             CharSequence name = "Notificacion";
 
-            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID,name,
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, name,
                     NotificationManager.IMPORTANCE_DEFAULT);
 
             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -251,7 +247,7 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
 
 
     //Creamos una notificación para que el usuario sepa que la aplicación se está ejecutando en 2do plano
-    private void createNotification(){
+    private void createNotification() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID);
 
         builder.setSmallIcon(R.drawable.ic_launcher_foreground);
@@ -259,18 +255,17 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         builder.setContentText("El servicio de mensajeria \"Confido\" se encuentra activo.");
         builder.setColor(Color.BLUE);
         builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        builder.setLights(Color.MAGENTA,1000,1000);
-        builder.setVibrate(new long[]{1000,1000,1000,1000,1000});
+        builder.setLights(Color.MAGENTA, 1000, 1000);
+        builder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
         builder.setDefaults(Notification.DEFAULT_SOUND);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
-        notificationManagerCompat.notify(NOTIFICATION_ID,builder.build());
+        notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
     }
 
 
-
     //Metodo que permite cerrar la notificación
-    private void closeNotification(){
+    private void closeNotification() {
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
         notificationManagerCompat.cancel(NOTIFICATION_ID);
     }
